@@ -1,0 +1,13 @@
+# Calculate greatest common denominator
+gcd() {
+	dividend=${1}
+	divisor=${2}
+	remainder=1
+	until [ "${remainder}" -eq 0 ]
+	do
+		let "remainder = $dividend % $divisor"
+		dividend=${divisor}
+		divisor=${remainder}
+	done
+	echo "${dividend}"
+}
