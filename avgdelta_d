@@ -1,0 +1,10 @@
+# Calculate average delta in days
+avgdelta_d() {
+        i=0 ; unset array_a ; unset array_d ; while read line ; do array_a[$i]="$line" ; (( i++ )) ; done
+        array_ac=$(echo "scale=0;`echo ${#array_a[*]}`-2"|bc -l)
+        for i in `seq 0 $array_ac`
+        do
+                array_d[$i]=$(echo "scale=0;(`echo ${array_a[(( i + 1 ))]}`-`echo ${array_a[i]}`)/86400"|bc -l)
+                echo ${array_d[$i]}
+        done | avg
+}
