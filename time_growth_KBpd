@@ -1,0 +1,15 @@
+# Calculate data growth over time in KBpd
+time_growth_KBpd() {
+        i=0 ; unset array_a ; unset array_b ; unset array_d ; tee >(head -1) >(tail -1) 1>/dev/null | xargs -d\n echo | while read line
+        do
+                array_a[$i]=$(echo $line | awk '{print $1}')
+                array_b[$i]=$(echo $line | awk '{print $2}')
+                if [ ${i} -eq 1 ]
+                then
+                        time_delta=$(echo "scale=0;`echo ${array_a[i]}`-`echo ${array_a[0]}`"|bc -l)
+                        disk_delta=$(echo "scale=0;`echo ${array_b[i]}`-`echo ${array_b[0]}`"|bc -l)
+                        echo "scale=0;(${disk_delta}/${time_delta})*86400"|bc -l
+                fi
+                (( i++ ))
+        done
+}
