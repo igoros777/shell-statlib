@@ -1,0 +1,12 @@
+# Calculate time difference in hours
+timediff_h() {
+        i=0 ; unset array_a ; unset array_d ; tee >(min) >(max) 1>/dev/null | while read line
+        do
+                array_a[$i]="$line"
+                if [ ${i} -eq 1 ]
+                        then
+                        echo "scale=0;(`echo ${array_a[i]}`-`echo ${array_a[0]}`)/3600"|bc -l
+                fi
+                (( i++ ))
+        done
+}
