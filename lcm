@@ -1,0 +1,31 @@
+# Calculate least common multiple
+lcm() {
+	count=$#
+	k=1
+	a=${1}
+	while [[ $# -gt 0 ]]
+	do
+		if [[ $1 > $2 ]]
+		then
+			a=${1}
+		fi
+		b[${k}]=$1
+		k=${k}+1
+		shift
+	done
+	
+	lcm=0
+	for (( c=9; c>${count}; c-- ))
+	do
+		b[${c}]=1
+	done
+	
+	for (( i=${a}; i>=${a}; i++ ))
+	do
+		if (( $(($i % ${b[1]})) == 0 && $(($i % ${b[2]})) == 0 && $(($i % ${b[3]})) == 0 && $(($i % ${b[4]})) == 0 && $(($i % ${b[5]})) == 0 && $(($i % ${b[6]})) == 0 && $(($i % ${b[7]})) == 0 && $(($i % ${b[8]})) == 0 && $(($i % ${b[9]})) == 0 ))
+		then
+			echo "${i}"
+			break         
+		fi
+	done
+}
