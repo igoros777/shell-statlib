@@ -11,5 +11,5 @@ sort -n | awk '
   }
   END {
     print sum;
-  }''
+  }'
 }
