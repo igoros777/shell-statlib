@@ -1,3 +1,4 @@
+#!/bin/bash
 # Alternative line-fitting function
 # Accepts input in two-column format:
 # x1 y1
